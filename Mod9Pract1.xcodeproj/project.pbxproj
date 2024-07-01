@@ -9,23 +9,33 @@
 /* Begin PBXBuildFile section */
 		5B4A07472C32315500A9E8A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A07462C32315500A9E8A1 /* AppDelegate.swift */; };
 		5B4A07492C32315500A9E8A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A07482C32315500A9E8A1 /* SceneDelegate.swift */; };
-		5B4A074B2C32315500A9E8A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A074A2C32315500A9E8A1 /* ViewController.swift */; };
 		5B4A074E2C32315500A9E8A1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5B4A074D2C32315500A9E8A1 /* Base */; };
 		5B4A07512C32315500A9E8A1 /* Mod9Pract1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A074F2C32315500A9E8A1 /* Mod9Pract1.xcdatamodeld */; };
 		5B4A07532C32315600A9E8A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4A07522C32315600A9E8A1 /* Assets.xcassets */; };
 		5B4A07562C32315600A9E8A1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5B4A07552C32315600A9E8A1 /* Base */; };
+		5B4A075E2C32318A00A9E8A1 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A075D2C32318A00A9E8A1 /* NetworkMonitor.swift */; };
+		5B4A07602C3231A000A9E8A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A075F2C3231A000A9E8A1 /* ViewController.swift */; };
+		5B4A07632C323EBA00A9E8A1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4A07622C323EBA00A9E8A1 /* AVFoundation.framework */; };
+		5B4A07652C323EBF00A9E8A1 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4A07642C323EBF00A9E8A1 /* Network.framework */; };
+		5B4A07672C3240A400A9E8A1 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4A07662C3240A400A9E8A1 /* AVKit.framework */; };
+		5B4A07692C32412B00A9E8A1 /* AVFAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4A07682C32412B00A9E8A1 /* AVFAudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5B4A07432C32315500A9E8A1 /* Mod9Pract1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mod9Pract1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B4A07462C32315500A9E8A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B4A07482C32315500A9E8A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5B4A074A2C32315500A9E8A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5B4A074D2C32315500A9E8A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B4A07502C32315500A9E8A1 /* Mod9Pract1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mod9Pract1.xcdatamodel; sourceTree = "<group>"; };
 		5B4A07522C32315600A9E8A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B4A07552C32315600A9E8A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B4A07572C32315600A9E8A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B4A075D2C32318A00A9E8A1 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		5B4A075F2C3231A000A9E8A1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B4A07622C323EBA00A9E8A1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5B4A07642C323EBF00A9E8A1 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
+		5B4A07662C3240A400A9E8A1 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		5B4A07682C32412B00A9E8A1 /* AVFAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFAudio.framework; path = System/Library/Frameworks/AVFAudio.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B4A07632C323EBA00A9E8A1 /* AVFoundation.framework in Frameworks */,
+				5B4A07692C32412B00A9E8A1 /* AVFAudio.framework in Frameworks */,
+				5B4A07652C323EBF00A9E8A1 /* Network.framework in Frameworks */,
+				5B4A07672C3240A400A9E8A1 /* AVKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +58,7 @@
 			children = (
 				5B4A07452C32315500A9E8A1 /* Mod9Pract1 */,
 				5B4A07442C32315500A9E8A1 /* Products */,
+				5B4A07612C323EBA00A9E8A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,7 +75,8 @@
 			children = (
 				5B4A07462C32315500A9E8A1 /* AppDelegate.swift */,
 				5B4A07482C32315500A9E8A1 /* SceneDelegate.swift */,
-				5B4A074A2C32315500A9E8A1 /* ViewController.swift */,
+				5B4A075D2C32318A00A9E8A1 /* NetworkMonitor.swift */,
+				5B4A075F2C3231A000A9E8A1 /* ViewController.swift */,
 				5B4A074C2C32315500A9E8A1 /* Main.storyboard */,
 				5B4A07522C32315600A9E8A1 /* Assets.xcassets */,
 				5B4A07542C32315600A9E8A1 /* LaunchScreen.storyboard */,
@@ -68,6 +84,17 @@
 				5B4A074F2C32315500A9E8A1 /* Mod9Pract1.xcdatamodeld */,
 			);
 			path = Mod9Pract1;
+			sourceTree = "<group>";
+		};
+		5B4A07612C323EBA00A9E8A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B4A07682C32412B00A9E8A1 /* AVFAudio.framework */,
+				5B4A07662C3240A400A9E8A1 /* AVKit.framework */,
+				5B4A07642C323EBF00A9E8A1 /* Network.framework */,
+				5B4A07622C323EBA00A9E8A1 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,8 +168,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B4A074B2C32315500A9E8A1 /* ViewController.swift in Sources */,
+				5B4A07602C3231A000A9E8A1 /* ViewController.swift in Sources */,
 				5B4A07472C32315500A9E8A1 /* AppDelegate.swift in Sources */,
+				5B4A075E2C32318A00A9E8A1 /* NetworkMonitor.swift in Sources */,
 				5B4A07492C32315500A9E8A1 /* SceneDelegate.swift in Sources */,
 				5B4A07512C32315500A9E8A1 /* Mod9Pract1.xcdatamodeld in Sources */,
 			);

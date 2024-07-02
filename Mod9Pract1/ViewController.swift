@@ -162,7 +162,12 @@ class ViewController: UIViewController {
     
     @IBAction func sliderVolumeChanged(_ sender: UISlider) {
         if fileFound{
-            avPlayer.volume = sliderVolume.value
+            if avPlayer == nil{
+                
+            }
+            else{
+                avPlayer.volume = sliderVolume.value
+            }
         }
         else{
             print("File not loaded")
@@ -171,7 +176,12 @@ class ViewController: UIViewController {
     
     @IBAction func sliderDurationChanged(_ sender: Any) {
         if fileFound{
-            avPlayer.currentTime = TimeInterval(sliderDuration.value)
+            if avPlayer == nil{
+                
+            }
+            else{
+                avPlayer.currentTime = TimeInterval(sliderDuration.value)
+            }
         }
         else{
             print("File not loaded")

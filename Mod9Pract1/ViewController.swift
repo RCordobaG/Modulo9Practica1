@@ -25,79 +25,169 @@ class ViewController: UIViewController {
     let audioSource = "http://janzelaznog.com/DDAM/iOS/"
     let audioParam = "imperial-march.mp3"
     
+    var audioURL : URL!
+    var fileFound : Bool = false
+    
+    var libraryDirectoryURL : URL!
+    var fileDestinationURL: URL!
+    
+    var isPlaying : Bool!
+    
 
     @IBOutlet weak var connectionTypeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        avPlayer = AVAudioPlayer()
+        isPlaying = false
         // Do any additional setup after loading the view.
         connectionTypeLabel.text = networkMonitor.connectionType
-        avPlayer = AVAudioPlayer()
-        print("double sex")
-        queryAudio()
+        audioURL = URL(string: (audioSource + audioParam))
+        libraryDirectoryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first!
+        fileDestinationURL = libraryDirectoryURL?.appendingPathComponent(audioURL.lastPathComponent)
         
-            
+        print(fileDestinationURL!)
+        
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //Do something
+    override func viewDidAppear(_ animated: Bool) {
+        if FileManager.default.fileExists(atPath: fileDestinationURL.path){
+            print("File exists")
+            displayAlert(title: "File exists", message: "The required found is already on the Library folder", button: "Understood")
+            self.fileFound = true
+            playAudio(file: fileFound)
+        }
+        else{
+            print("File not found")
+            displayAlert(title: "File not found", message: "This app will now download an mp3 file over the network if connected through WiFi", button: "Understood")
+            self.fileFound = false
+            
+            if(networkMonitor.connectionType == "WiFi"){
+                queryAudio()
+                while(!self.fileFound){
+                    
+                }
+                displayAlert(title: "File downloaded", message: "File has been downloaded", button: "Understood")
+            }
+            
+            else if (networkMonitor.connectionType == "Cellular"){
+                displayAlert(title: "No WiFi", message: "You are connected using cellular. This may incur in charges. Please switch to WiFi", button: "Understood")
+            }
+            
+            else{
+                displayAlert(title: "No Internet", message: "Can not reach the internet", button: "Understood")
+            }
+            
+            playAudio(file: fileFound)
+        }
     }
     
     func queryAudio(){
         if networkMonitor.isReachable{
-            let audioURL = audioSource + audioParam
-            if let url = URL(string: audioURL){
-                let libraryDirectoryURL = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first!
-                let fileDestinationURL = libraryDirectoryURL.appendingPathComponent(url.lastPathComponent)
-                print(fileDestinationURL)
-                
-                
-                if FileManager.default.fileExists(atPath: fileDestinationURL.path){
-                    print("File exists")
-                }
-                else{
-                    print("No file found")
-                    URLSession.shared.downloadTask(with: url){location, response, error in
-                        guard let location = location, error == nil else {return}
-                        do{
-                            try FileManager.default.moveItem(at: location, to: fileDestinationURL)
-                            print("File moved to Library folder")
-                            
-                        } 
-                        catch{
-                            print("error")
-                        }
-                    }.resume()
-                }
-                
+            URLSession.shared.downloadTask(with: audioURL){location, response, error in
+                guard let location = location, error == nil else {return}
                 do{
-                    avPlayer = try AVAudioPlayer(contentsOf: fileDestinationURL)
-                    sliderVolume.value = avPlayer.volume
-                    sliderDuration.maximumValue = Float(avPlayer.duration)
-                    timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: {tmr in self.sliderDuration.value = Float(self.avPlayer.currentTime)})
-                    //avPlayer.play()
-                    
+                    try FileManager.default.moveItem(at: location, to: self.fileDestinationURL)
+                    print("File moved to Library folder")
+                    self.fileFound = true
                 }
                 catch{
-                    print("Error occurred when playing Audio stream")
+                    print("Error downloading the file")
+                    self.fileFound = false
                 }
+            }.resume()
+        }
+        
+        else{
+            print("Network is unreachable")
+        }
+    }
+    
+    func playAudio(file : Bool){
+        if file{
+            do{
+                print("File: ")
+                print(fileFound)
+                avPlayer = try AVAudioPlayer(contentsOf: fileDestinationURL)
+                sliderVolume.value = avPlayer.volume
+                sliderDuration.maximumValue = Float(avPlayer.duration)
+                timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: {tmr in self.sliderDuration.value = Float(self.avPlayer.currentTime)})
+                //avPlayer.play()
+                
+            }
+            catch{
+                print("Error occurred when playing Audio stream")
             }
         }
     }
     
     @IBAction func btnPlayTouch(_ sender: Any) {
-        avPlayer.play()
+        if fileFound{
+            if avPlayer == nil{
+                
+            }
+            else{
+                if !isPlaying{
+                    avPlayer.play()
+                    isPlaying = true
+                }
+                else{
+                    avPlayer.stop()
+                    isPlaying = false
+                }
+            }
+            
+        }
+        else{
+            print("File not loaded")
+        }
     }
     
     @IBAction func btnStopTouch(_ sender: Any) {
-        avPlayer.stop()
+        if fileFound{
+            if avPlayer ==  nil{
+                
+            }
+            else{
+                avPlayer.stop()
+                isPlaying = false
+                sliderDuration.value = 0.0
+                avPlayer.currentTime = TimeInterval(sliderDuration.value)
+            }
+        }
+        else{
+            print("File not loaded")
+        }
     }
     
     @IBAction func sliderVolumeChanged(_ sender: UISlider) {
-        avPlayer.volume = sliderVolume.value
+        if fileFound{
+            avPlayer.volume = sliderVolume.value
+        }
+        else{
+            print("File not loaded")
+        }
     }
     
     @IBAction func sliderDurationChanged(_ sender: Any) {
-        avPlayer.currentTime = TimeInterval(sliderDuration.value)
+        if fileFound{
+            avPlayer.currentTime = TimeInterval(sliderDuration.value)
+        }
+        else{
+            print("File not loaded")
+        }
+    }
+    
+    
+    func displayAlert(title:String, message:String, button:String){
+        let ac = UIAlertController(title: title, message:message, preferredStyle: .alert)
+        let action = UIAlertAction(title: button, style: .default) {
+            alertAction in
+            // Este codigo se ejecutará cuando el usuario toque el botón
+        }
+        ac.addAction(action)
+        self.present(ac, animated: true)
+
     }
     
 }

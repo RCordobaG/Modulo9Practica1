@@ -26,7 +26,7 @@ class NetworkMonitor : ObservableObject{
             
             else if path.usesInterfaceType(.cellular){
                 print("No Wifi")
-                self.connectionType = "Cellular (datos moviles)"
+                self.connectionType = "Cellular"
             }
             
             else{

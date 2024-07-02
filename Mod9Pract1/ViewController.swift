@@ -53,14 +53,17 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if FileManager.default.fileExists(atPath: fileDestinationURL.path){
             print("File exists")
-            displayAlert(title: "File exists", message: "The required found is already on the Library folder", button: "Understood")
+            displayAlert(title: "File exists", message: "The required file is already on the Library folder", button: "Understood")
             self.fileFound = true
+            npLabel.text = fileDestinationURL.lastPathComponent
             playAudio(file: fileFound)
         }
         else{
             print("File not found")
             displayAlert(title: "File not found", message: "This app will now download an mp3 file over the network if connected through WiFi", button: "Understood")
             self.fileFound = false
+            
+            print(networkMonitor.connectionType)
             
             if(networkMonitor.connectionType == "WiFi"){
                 queryAudio()
